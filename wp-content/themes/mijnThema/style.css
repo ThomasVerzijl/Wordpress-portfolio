@@ -1,0 +1,35 @@
+/*
+Theme Name: yipiie
+Theme URI: http://voorbeeld.com/
+Author: Thomas
+Author URI: http://voorbeeld.com/
+Description: Een zelfgemaakt WordPress thema.
+Version: 1.0
+*/
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+#content {
+  padding: 20px;
+}
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  bottom: 0;
+}
