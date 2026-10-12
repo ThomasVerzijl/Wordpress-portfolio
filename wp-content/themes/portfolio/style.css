@@ -6,11 +6,23 @@ Author URI: http://voorbeeld.com/
 Description: Theme for portfolio
 Version: 1.0
 */
+header {
+  position: sticky;
+  top: 0;
+}
 
+@font-face {
+  font-family: "Inter";
+  src: url(assets/fonts/Inter/inter.ttf) format("trueType-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 body {
   background-color: #e8ddc8;
   margin: 0;
   padding: 0;
+  font-family: "Inter", sans-serif;
 }
 header {
   display: flex;
@@ -39,4 +51,71 @@ header {
 
 .language {
   padding-right: 100px;
+}
+.top-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 3rem auto 0 auto;
+  padding: 0 2rem;
+}
+
+h1 {
+  font-size: 72px;
+  padding: 0;
+}
+.hero-intro {
+  font-family: "Inter", sans-serif;
+  max-width: 1200px;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.profession {
+  font-size: 36px;
+}
+.hero-content {
+  max-width: 17ch;
+  text-wrap: wrap;
+  font-size: 24px;
+}
+.hero-intro h1,
+.hero-intro .profession,
+.hero-intro .hero-content,
+.hero-intro p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 320px;
+}
+
+.skill {
+  border: 1.5px solid #000;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.my-skills {
+  align-items: flex-end;
+  margin-top: 5rem;
+}
+
+@media (min-width: 900px) {
+  .top-content {
+    flex-direction: row; /* Naast elkaar zetten */
+    justify-content: space-between; /* Ruimte over de hele breedte verdelen */
+    align-items: flex-start;
+    margin-top: 5rem;
+  }
+  .my-skills {
+    margin-top: 1rem;
+  }
 }
