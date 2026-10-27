@@ -140,6 +140,12 @@ h2 {
     #e8ddc8 75%
   );
 }
+.project_card .project_image > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .project_card h3 {
   margin: 1rem;
 }
