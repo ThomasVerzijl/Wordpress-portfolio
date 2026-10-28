@@ -1,10 +1,42 @@
-<?php get_header(); ?>
+<?php get_header();
+
+
+$homepage_id = get_option('page_on_front');
+$intro_text = get_field('intro_text', $homepage_id);
+$about_text = get_field('about_me', $homepage_id);
+$about_img = get_field('about_img', $homepage_id);
+
+$project_arguments = [
+    'post_type' => 'project',
+    'posts_per_page' => 3,
+    'meta_query' => [
+        [
+            'key' => 'featured_project',
+            'value' => '1',
+            'compare' => '='
+        ],
+    ],
+];
+$projects_query = new WP_Query($project_arguments);
+?>
 <div class="top-content">
     <div class="hero-intro">
         <p class="hero-content hero_intro" id="">Hi I'm</p>
         <h1>Thomas Verzijl</h1>
         <h2 class="profession">Software developer</h2>
-        <p class="hero-content">This is my portfolio page. Here you'll find everything you need to know about me</p>
+        <div class="hero-content">
+            <?php
+            $homepage_id = get_option('page_on_front');
+            $intro_text  = get_field('intro_text', $homepage_id);
+
+            if ($intro_text) {
+                echo $intro_text;
+            } else {
+                echo 'intro text not found';
+            }
+            ?>
+        </div>
+        </p>
     </div>
     <div class="my-skills">
         <h2>My skills</h2>
@@ -32,18 +64,7 @@
 </div>
 <div id="projects_container">
     <?php
-    $project_arguments = [
-        'post_type' => 'project',
-        'posts_per_page' => 3,
-        'meta_query' => [
-            [
-                'key' => 'featured_project',
-                'value' => '1',
-                'compare' => '='
-            ],
-        ],
-    ];
-    $projects_query = new WP_Query($project_arguments);
+
 
     if ($projects_query->have_posts()) {
         while ($projects_query->have_posts()) {
@@ -52,7 +73,7 @@
 
             //project card
     ?>
-            <div class="project_card">
+            <a href="<?php the_permalink() ?>" class="project_card">
                 <div class="project_image">
                     <?php
                     if (has_post_thumbnail()) {
@@ -73,7 +94,7 @@
                     }
                     ?>
                 </div>
-            </div>
+            </a>
 
 
     <?php
@@ -93,19 +114,31 @@
     <h2 id="about-me-title">About me</h2>
     <div class="about-me-content">
         <div class="about-me-copy">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis ipsum enim earum quaerat nostrum similique id fugit cupiditate optio quasi quam, distinctio eos corporis ducimus. Quas ullam similique culpa repellendus?</p>
-            <p>Ea mollitia, harum incidunt facilis omnis aliquid ipsum? Exercitationem nulla at accusantium eum minima consectetur sequi placeat voluptatibus quas nam, ipsum natus quisquam similique sapiente repudiandae commodi excepturi. Assumenda, non!</p>
-            <p>Laborum necessitatibus molestiae odit dolore temporibus aut eaque, fuga magni culpa obcaecati maiores officia eveniet! Pariatur corrupti eius, expedita iusto ad illum ullam inventore aliquid fugit eaque, laboriosam maiores eum.</p>
-            <p>Ut enim voluptas consectetur atque aliquam harum veritatis dolor, quo, facilis similique, accusantium maxime rem a. Ullam, dicta nemo rem incidunt soluta id reprehenderit minus. Iure veritatis voluptatem inventore quod?</p>
-            <p>Excepturi repellat, dolor modi nesciunt reprehenderit inventore aliquam. Velit fugiat optio tempore deleniti magnam aut cum. Porro, voluptatem, tempora alias dolores est doloribus assumenda itaque dolor odit eius repellat exercitationem!</p>
-        </div>
+            <?php
+            if ($about_text) {
+                echo $about_text;
+            } else {
+                echo '<p>Standaard over mij tekst...</p>';
+            }
+            ?>
 
+
+        </div>
         <div class="about-me-img">
-            <div class="project_image" role="img" aria-label="About me image placeholder"></div>
+            <?php
+            if ($about_img) {
+                echo '<img src="' . $about_img . '"></img>';
+            } else {
+            ?>
+                <div class="project_image" role="img" aria-label="About me image placeholder"></div>
+                <p>image not found</p>
+            <?php
+            }
+            ?>
+
         </div>
+
+
+
     </div>
-
-
-
-</div>
-<?php get_footer(); ?>
+    <?php get_footer(); ?>

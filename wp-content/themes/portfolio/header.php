@@ -6,22 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php bloginfo('name'); ?></title>
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+    <?php wp_head(); ?>
 </head>
 
 <body>
     <header>
         <?php
-        $background_mode = "light";
-        $language = "en";
+        $background_mode = "light mode";
         ?>
 
-        <div class="background-mode head_cont">
-            <p c>light mode</p>
-            <div class="header_line"></div>
-        </div>
-        <div class="language head_cont">
-            <p>EN</p>
-            <div class="header_line"></div>
+        <button class="background-mode head_cont theme" type="button">
+            <span id="background_text"><?php echo $background_mode; ?></span>
+            <span class="header_line" aria-hidden="true"></span>
+        </button>
         </div>
 
 

@@ -21,7 +21,7 @@ get_header();
                 $projects_query->the_post();
                 $project_skills = get_the_terms(get_the_ID(), 'skill');
         ?>
-                <div class="project_card">
+                <a href="<?php the_permalink() ?>" class="project_card">
                     <div class="project_image">
                         <?php
                         if (has_post_thumbnail()) {
@@ -42,7 +42,7 @@ get_header();
                         }
                         ?>
                     </div>
-                </div>
+                </a>
         <?php
             }
         } else {
