@@ -15,7 +15,7 @@ Version: 1.0
   --color-accent: #f5a623;
 }
 body.dark-mode {
-  --color-background: #1b1b1b;
+  --color-background: #000000;
   --color-text: #e8ddc8;
   --color-surface: #292929;
   --color-border: #e8ddc8;
@@ -323,4 +323,43 @@ h2 {
   width: 35rem;
   max-width: 100%;
   height: auto;
+}
+
+.site-footer {
+  margin-top: 6rem;
+  padding: 2rem;
+  border-top: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+.site-footer-content {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+.site-footer p {
+  margin: 0;
+}
+.site-footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.site-footer-contact a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 0.2em;
+}
+.site-footer-copyright {
+  font-size: 0.9rem;
+}
+@media (max-width: 600px) {
+  .site-footer-content {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
