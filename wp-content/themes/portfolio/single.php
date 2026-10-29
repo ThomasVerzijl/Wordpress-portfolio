@@ -3,7 +3,29 @@ $project_title = get_the_title();
 $project_image = get_the_post_thumbnail_url();
 $project_desc = get_the_content();
 $project_skills = get_the_terms(get_the_ID(), 'skill');
+$project_links_html = '';
+$project_links = [
+    ['url' => get_field('live_url'), 'label' => 'View live site'],
+    ['url' => get_field('git_repo'), 'label' => 'View source code'],
+    ['url' => get_field('video_url'), 'label' => 'Watch project video'],
+];
 
+foreach ($project_links as $project_link) {
+    if (!is_string($project_link['url']) || trim($project_link['url']) === '') {
+        continue;
+    }
+
+    $url = esc_url(trim($project_link['url']));
+    if ($url === '') {
+        continue;
+    }
+
+    $project_links_html .= '<a class="project-link" href="' . $url . '" target="_blank" rel="noopener noreferrer">' . esc_html($project_link['label']) . '<span aria-hidden="true"> &rarr;</span></a>';
+}
+
+if ($project_links_html !== '') {
+    $project_links_html = '<nav class="project-links" aria-label="Project links">' . $project_links_html . '</nav>';
+}
 
 if ($project_image) {
     $project_image_html = '<img src="' . esc_url($project_image) . '" alt="' . esc_attr($project_title) . '">';
@@ -38,6 +60,7 @@ if ($project_image_html || $skills_html || $project_desc_html || $project_title_
     echo $project_image_html;
     echo $skills_html;
     echo $project_desc_html;
+    echo $project_links_html;
     echo '</div>';
     echo '</main>';
 } else {

@@ -324,6 +324,34 @@ h2 {
   max-width: 100%;
   height: auto;
 }
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto 0;
+}
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.25rem;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+.project-link:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--color-border);
+}
+.project-link span {
+  color: var(--color-accent);
+}
 
 .site-footer {
   margin-top: 6rem;
